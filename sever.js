@@ -1,6 +1,8 @@
+require("dotenv").config({ path: "./src/.env" });
 const app = require("./src/app");
 
-const port = 3055;
+const env = process.env.NODE_ENV === "pro" ? "PRO" : "DEV";
+const port = process.env[`${env}_APP_PORT`] || 3055;
 
 // Start the server
 
