@@ -4,11 +4,13 @@
   "description": "",
   "main": "sever.js",
   "scripts": {
+    "start": "node sever.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/datnguyentathoang/main.git"
+    "url": "git+https://github.com/datnguyentathoang/main.git",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +21,8 @@
   },
   "homepage": "https://github.com/datnguyentathoang/main#readme",
   "dependencies": {
+    "bcrypt": "^6.0.0",
+    "crypto": "^1.0.1",
     "express": "^5.1.0",
     "mongoose": "^8.17.1"
   },
