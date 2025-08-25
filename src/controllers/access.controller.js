@@ -1,4 +1,5 @@
 "use strict";
+const AccessService = require("../services/access.service");
 
 class AccessController {
   signup = async (req, res, next) => {
@@ -8,12 +9,10 @@ class AccessController {
         200 ok
         201 CREATED
         */
-      return res.status(201).json({
-        code: 201,
-        metadata: {
-          userID: 1,
-        },
-      });
+      if (!req.body) {
+        return res.status(400).json({ message: "Missing request body" });
+      }
+      return res.status(201).json(await AccessService.signUp(req.body));
     } catch (error) {
       next(error);
     }

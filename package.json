@@ -9,8 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/datnguyentathoang/main.git",
-    "start": "node server.js"
+    "url": "git+https://github.com/datnguyentathoang/main.git"
   },
   "keywords": [],
   "author": "",
@@ -21,9 +20,8 @@
   },
   "homepage": "https://github.com/datnguyentathoang/main#readme",
   "dependencies": {
-    "bcrypt": "^6.0.0",
-    "crypto": "^1.0.1",
     "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.17.1"
   },
   "bundleDependencies": [
