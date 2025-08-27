@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 const mongoose = require("mongoose");
 const { Schema, model } = require("mongoose"); // Erase if already required
@@ -13,6 +13,10 @@ var keyTokenSchema = new Schema(
       type: Schema.Types.ObjectId,
       required: true,
       ref: "Shop",
+    },
+    privatekey: {
+      type: String,
+      required: true,
     },
     publicKey: {
       type: String,

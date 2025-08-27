@@ -1,11 +1,11 @@
-
 "use strict";
 const ShopModel = require("../models/shop.model");
 const bcrypt = require("bcrypt");
-const crypto = require("crypto");
+const crypto = require("node:crypto");
 const KeyTokenService = require("./keyToken.service");
 const { createTokenPair } = require("../auth/authUtils");
 const { format } = require("path");
+const { getInfoData } = require("../utils");
 
 const RoleShop = {
   SHOP: "SHOP",
@@ -50,23 +50,23 @@ class AccessService {
 
         console.log({ privateKey, publicKey });
 
-        const publicKeyString = await KeyTokenService.createKeyToken({
+        const keyStore = await KeyTokenService.createKeyToken({
           userId: newShop._id,
           publicKey,
+          privatekey: privateKey,
         });
 
-        if (!publicKeyString) {
+        if (!keyStore) {
           return {
             code: "xxx",
-            message: "publicKeyString error",
+            message: "keyStore error",
           };
         }
-        const publicKeyObject = crypto.createPublicKey(publicKeyString);
 
         //created token pair
         const token = await createTokenPair(
           { userId: newShop._id, email },
-          publicKeyString,
+          publicKey,
           privateKey
         );
         console.log(`created token successfully:`, token);
@@ -74,8 +74,11 @@ class AccessService {
         return {
           code: "201",
           metadata: {
-            shop: newShop,
-            tokens,
+            shop: getInfoData({
+              field: ["_id", "name", "email"],
+              object: newShop,
+            }),
+            token,
           },
         };
       }
@@ -85,6 +88,7 @@ class AccessService {
         metadata: null,
       };
     } catch (error) {
+      console.log("error signUp:: ", error);
       return {
         code: "xxx",
         message: error.message,
