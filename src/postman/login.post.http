@@ -1,6 +1,6 @@
 @url_dev = http://localhost:3052/v1/api
 
-POST {{url_dev}}/shop/signup
+POST {{url_dev}}/shop/login
 Content-Type: application/json
 x-api-key: df1fd93e760ad6c176cb520c320a9f6f39d10383f51a2566d66c3c6fbe0476613abd7aa61eaad07f492b5901abff379d84d9180b394aefdb55a7e0f91ea39214
 

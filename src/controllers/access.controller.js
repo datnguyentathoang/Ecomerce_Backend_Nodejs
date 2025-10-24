@@ -1,25 +1,19 @@
 "use strict";
 const AccessService = require("../services/access.service");
 
+const { OK, CREATED, SuccessResponse } = require("../core/successs.response");
+
 class AccessController {
+  logout = async (req, res, next) => {
+    new OK("Logout success!", await AccessService.logout(req.keyStore)).send(
+      res
+    );
+  };
+  login = async (req, res, next) => {
+    new OK("Login OK!", await AccessService.login(req.body)).send(res);
+  };
   signup = async (req, res, next) => {
-    try {
-      console.log(`[P]::signup: `, req.body);
-      /*
-        200 ok
-        201 CREATED
-        */
-      if (!req.body) {
-        return res.status(400).json({ message: "Missing request body" });
-      }
-      return res.status(201).json(await AccessService.signUp(req.body));
-    } catch (error) {
-      console.error("Signup error:", error);
-      return res.status(500).json({
-        message: "Internal server error",
-        error: error.message,
-      });
-    }
+    new CREATED("Register OK!", await AccessService.signUp(req.body)).send(res);
   };
 }
 

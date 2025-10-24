@@ -22,9 +22,14 @@ var keyTokenSchema = new Schema(
       type: String,
       required: true,
     },
-    refreshToken: {
+    refreshTokensUsed: { //nhung refresh token da su dung
       type: Array,
       default: [],
+    },
+    refreshToken: { //refresh token hien tai
+      type: String,
+      required: true,
+      default: null,  
     },
   },
   {
